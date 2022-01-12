@@ -4,14 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:insta_clone/constants/common_size.dart';
 import 'package:insta_clone/widgets/my_avatar.dart';
 
+import 'comment.dart';
 import 'my_progress_indicator.dart';
 
 class Post extends StatelessWidget {
   final number;
-  Size? size;
+  late Size? size;
 
   Post(
-    this.number, {
+    this.number,
+    this.size, {
     Key? key,
   }) : super(key: key);
 
@@ -25,14 +27,29 @@ class Post extends StatelessWidget {
         _postHeader(),
         _postImage(),
         _postActions(),
-        Padding(
-          padding: const EdgeInsets.only(left: common_gap),
-          child: Text(
-            '1200 likes',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
+        _postLikes(),
+        _postCaption(),
       ],
+    );
+  }
+
+  Widget _postCaption() {
+    return Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: common_gap, vertical: common_xxs_gap),
+        child: Comment(
+          username: '1',
+          text: '123',
+        ));
+  }
+
+  Padding _postLikes() {
+    return Padding(
+      padding: const EdgeInsets.only(left: common_gap),
+      child: Text(
+        '1200 likes',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
     );
   }
 
@@ -72,7 +89,7 @@ class Post extends StatelessWidget {
           child: MyAvatar(
             avatarWidth: avatar_size,
             avatarHeight: avatar_size,
-            avatarImage: 'https://picsum.photos/100',
+            avatarImage: 'https://picsum.photos/100/100/$number',
           ),
         ),
         Expanded(child: Text('UserName')), // 끝까지 다 채워주는 위젯
