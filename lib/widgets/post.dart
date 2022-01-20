@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_clone/constants/common_size.dart';
+import 'package:insta_clone/constants/screen_size.dart';
 import 'package:insta_clone/widgets/my_avatar.dart';
 
 import 'comment.dart';
@@ -9,17 +10,14 @@ import 'my_progress_indicator.dart';
 
 class Post extends StatelessWidget {
   final number;
-  late Size? size;
 
   Post(
-    this.number,
-    this.size, {
+    this.number, {
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (size == null) size = MediaQuery.of(context).size;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +87,7 @@ class Post extends StatelessWidget {
           child: MyAvatar(
             avatarWidth: avatar_size,
             avatarHeight: avatar_size,
-            avatarImage: 'https://picsum.photos/100/100/$number',
+            avatarImage: 'https://picsum.photos/id/$number/100/100',
           ),
         ),
         Expanded(child: Text('UserName')), // 끝까지 다 채워주는 위젯

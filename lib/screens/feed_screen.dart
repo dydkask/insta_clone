@@ -37,7 +37,7 @@ class FeedScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (BuildContext context, int index) {
-          return Post(index,null);
+          return Post(index);
         },
         itemCount: 30,
       ),
